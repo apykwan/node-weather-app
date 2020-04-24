@@ -7,7 +7,7 @@ const forecast = require('./utils/forecast');
 
 
 const app = express();
-const port = process.env || 3000;
+const port = process.env.Port || 3000;
 
 // console.log(__dirname);
 console.log(path.join(__dirname, '../public/'));
@@ -64,18 +64,16 @@ app.get('/weather', (req, res) => {
                 error: 'check your input!'
             });
         };
-        forecast(latitude, longitude, (err, { descriptions, temperature, precip }) => {
+        forecast(latitude, longitude, (err, forecast) => {
             if (err) {
                 return res.send({
                     error: 'Unable to find location. Try another search'
                 });
             }
-            res.send([{
-                forecast: descriptions,
-                temperature,
-                "chance of raining": `${precip}%`,
-                location,
-            }])
+            res.send({
+                forecast,
+                location
+            })
         });
     });
 });
@@ -110,5 +108,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log('server is up on port.')
+    console.log('server is up on port.' + port);
 });

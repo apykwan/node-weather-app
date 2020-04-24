@@ -19,8 +19,8 @@ weatherForm.addEventListener('submit', e => {
     fetch(`/weather?address=${location}}`)
         .then(response => response.json())
         .then(data => {
-            messageOne.textContent = data[0].forecast;
-            messageTwo.textContent = data[0].location;
+            messageOne.textContent = data.forecast;
+            messageTwo.textContent = data.location;
             search.value = "";
         })
         .catch(_ => messageOne.textContent = "Unable to fetch the data. Please try again");

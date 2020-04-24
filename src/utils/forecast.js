@@ -14,7 +14,9 @@ function forecast (latitude, longitude, callback) {
         const descriptions = current.weather_descriptions[0];
         const temperature = current.temperature;
         const precip = current.precip;
-        return callback(undefined, {descriptions, temperature, precip});
+        const forecast = `${descriptions}. It is currently ${temperature} degrees out. There is ${precip} chance of rain.`
+
+        return callback(undefined, forecast);
     })
     .catch(error => {
         callback(error, undefined);
