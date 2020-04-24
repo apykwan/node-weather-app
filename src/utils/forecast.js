@@ -14,7 +14,7 @@ function forecast (latitude, longitude, callback) {
         const descriptions = current.weather_descriptions[0];
         const temperature = current.temperature;
         const precip = current.precip;
-        const forecast = `${descriptions}. It is currently ${temperature} degrees out. There is ${precip} chance of rain.`
+        const forecast = `${descriptions}. It is currently ${temperature} degrees out. There is ${precip} percent chance of rain.`
 
         return callback(undefined, forecast);
     })
